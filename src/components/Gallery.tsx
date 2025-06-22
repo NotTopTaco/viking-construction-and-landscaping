@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 
@@ -105,6 +105,18 @@ const Gallery: React.FC = () => {
     ? projects 
     : projects.filter(project => project.category === selectedCategory);
 
+  // Group projects into rows based on screen size
+  const projectRows = useMemo(() => {
+    const rows = [];
+    const itemsPerRow = 4; // For desktop (xl:grid-cols-4)
+    
+    for (let i = 0; i < filteredProjects.length; i += itemsPerRow) {
+      rows.push(filteredProjects.slice(i, i + itemsPerRow));
+    }
+    
+    return rows;
+  }, [filteredProjects]);
+
   const openLightbox = (index: number) => {
     setSelectedImage(index);
   };
@@ -160,34 +172,70 @@ const Gallery: React.FC = () => {
           </div>
         </AnimatedSection>
 
-        {/* Gallery Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredProjects.map((project, index) => (
+        {/* Gallery Grid - Row by Row Animation on Desktop, Individual on Mobile */}
+        <div className="space-y-6">
+          {projectRows.map((row, rowIndex) => (
             <AnimatedSection
-              key={project.id}
-              animation="scale-in"
-              delay={index * 150} // Stagger delay for masonry effect
+              key={`row-${rowIndex}`}
+              animation="slide-up"
+              delay={rowIndex * 200}
+              className="hidden md:block" // Desktop row animation
             >
-              <div 
-                className="group cursor-pointer"
-                onClick={() => openLightbox(index)}
-              >
-                <div className="relative overflow-hidden rounded-xl shadow-lg image-hover">
-                  <img 
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-end">
-                    <div className="p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                      <h3 className="font-bold text-lg mb-1">{project.title}</h3>
-                      <p className="text-sm opacity-90">{project.description}</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {row.map((project, projectIndex) => (
+                  <div 
+                    key={project.id}
+                    className="group cursor-pointer"
+                    onClick={() => openLightbox(filteredProjects.indexOf(project))}
+                  >
+                    <div className="relative overflow-hidden rounded-xl shadow-lg image-hover">
+                      <img 
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-end">
+                        <div className="p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                          <h3 className="font-bold text-lg mb-1">{project.title}</h3>
+                          <p className="text-sm opacity-90">{project.description}</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
+                ))}
               </div>
             </AnimatedSection>
           ))}
+
+          {/* Mobile Individual Animations */}
+          <div className="md:hidden grid grid-cols-1 gap-6">
+            {filteredProjects.map((project, index) => (
+              <AnimatedSection
+                key={project.id}
+                animation="scale-in"
+                delay={index * 150}
+              >
+                <div 
+                  className="group cursor-pointer"
+                  onClick={() => openLightbox(index)}
+                >
+                  <div className="relative overflow-hidden rounded-xl shadow-lg image-hover">
+                    <img 
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300 flex items-end">
+                      <div className="p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <h3 className="font-bold text-lg mb-1">{project.title}</h3>
+                        <p className="text-sm opacity-90">{project.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
         </div>
 
         {/* Lightbox */}
