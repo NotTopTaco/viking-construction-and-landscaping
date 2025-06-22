@@ -50,7 +50,7 @@ const Header: React.FC = () => {
           {/* Logo */}
           <div className="flex items-center space-x-3">
             <img 
-              src="/viking.jpg" 
+              src="/viking-logo-removebg-preview.png" 
               alt="Viking Construction Logo" 
               className="h-12 w-auto object-contain"
             />
