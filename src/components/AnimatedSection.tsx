@@ -17,20 +17,20 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
   const { elementRef, isVisible } = useScrollAnimation();
 
   const getAnimationClasses = () => {
-    const baseClasses = 'transition-all duration-1200';
+    const baseClasses = 'transition-all duration-1000 ease-out-cubic animate-optimized';
     
     if (!isVisible) {
       switch (animation) {
         case 'slide-up':
-          return `${baseClasses} opacity-0 translate-y-4`;
+          return `${baseClasses} opacity-0 translate-y-16`;
         case 'slide-left':
-          return `${baseClasses} opacity-0 translate-x-5`;
+          return `${baseClasses} opacity-0 translate-x-16`;
         case 'slide-right':
-          return `${baseClasses} opacity-0 -translate-x-5`;
+          return `${baseClasses} opacity-0 -translate-x-16`;
         case 'scale-in':
-          return `${baseClasses} opacity-0 scale-95`;
+          return `${baseClasses} opacity-0 scale-85`;
         default:
-          return `${baseClasses} opacity-0`;
+          return `${baseClasses} opacity-0 translate-y-12`;
       }
     }
     
