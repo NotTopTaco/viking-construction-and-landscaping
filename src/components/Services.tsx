@@ -3,6 +3,9 @@ import { Home, Building, Hammer, TreePine, Droplets, Snowflake, Wrench, Palette 
 import AnimatedSection from './AnimatedSection';
 import CounterDisplay from './CounterDisplay';
 
+// Utility to detect mobile (client-side only)
+const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
 const Services: React.FC = () => {
   const services = [
     {
@@ -134,7 +137,7 @@ const Services: React.FC = () => {
             <AnimatedSection
               key={index}
               animation={index % 2 === 0 ? 'slide-left' : 'slide-right'}
-              delay={index * 150}
+              delay={isMobile ? 0 : index * 150}
             >
               <div className="bg-white rounded-xl shadow-lg p-8 service-card-hover group h-full">
                 <div className="text-viking-red mb-4 group-hover:scale-110 transition-transform duration-300">

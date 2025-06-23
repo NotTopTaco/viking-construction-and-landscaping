@@ -2,6 +2,9 @@ import React, { useState, useMemo } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 
+// Utility to detect mobile (client-side only)
+const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
 const Gallery: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -213,7 +216,7 @@ const Gallery: React.FC = () => {
               <AnimatedSection
                 key={project.id}
                 animation="scale-in"
-                delay={index * 150}
+                delay={isMobile ? 0 : index * 150}
               >
                 <div 
                   className="group cursor-pointer"

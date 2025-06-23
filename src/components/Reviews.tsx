@@ -3,6 +3,9 @@ import { Star, Quote } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 import CounterDisplay from './CounterDisplay';
 
+// Utility to detect mobile (client-side only)
+const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
 const Reviews: React.FC = () => {
   const reviews = [
     {
@@ -90,7 +93,7 @@ const Reviews: React.FC = () => {
             <AnimatedSection
               key={index}
               animation="scale-in"
-              delay={index * 200}
+              delay={isMobile ? 0 : index * 200}
             >
               <div className="text-center">
                 <div className="text-3xl md:text-4xl font-black text-viking-red mb-2">
@@ -114,7 +117,7 @@ const Reviews: React.FC = () => {
             <AnimatedSection
               key={review.id}
               animation="slide-up"
-              delay={index * 200}
+              delay={isMobile ? 0 : index * 200}
             >
               <div className="bg-white rounded-xl shadow-lg p-8 service-card-hover h-full">
                 {/* Quote Icon */}
