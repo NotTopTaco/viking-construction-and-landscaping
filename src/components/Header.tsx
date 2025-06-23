@@ -24,10 +24,10 @@ const Header: React.FC = () => {
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled ? 'bg-white shadow-lg' : 'bg-white/95 backdrop-blur-sm'
-    }`}>
+    } mb-4 md:mb-0`}>
       {/* Top contact bar */}
       <div className="bg-viking-black text-white py-2 px-4">
-        <div className="max-w-7xl mx-auto flex justify-between items-center text-sm">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center text-xs sm:text-sm gap-1 sm:gap-0">
           <div className="flex items-center space-x-4">
             <a href="tel:8017878893" className="flex items-center space-x-1 hover:text-viking-red transition-colors">
               <Phone size={14} />
@@ -38,7 +38,7 @@ const Header: React.FC = () => {
               <span>andreas@builtbyvikings.com</span>
             </a>
           </div>
-          <div className="text-xs">
+          <div className="text-[11px] sm:text-xs text-center sm:text-right w-full sm:w-auto mt-1 sm:mt-0">
             <span className="font-semibold">20+ Years Experience</span> | Licensed & Insured
           </div>
         </div>

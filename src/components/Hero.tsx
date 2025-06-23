@@ -24,7 +24,7 @@ const Hero: React.FC = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 py-32 text-center text-white">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 py-32 text-center text-white mt-20 sm:mt-0">
         <div>
           {/* Main Headline */}
           <AnimatedSection animation="slide-up" delay={300}>
