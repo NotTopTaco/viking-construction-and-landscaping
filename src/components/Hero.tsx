@@ -15,8 +15,10 @@ const Hero: React.FC = () => {
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <img 
+        <img
           src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
+          srcSet="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop 600w, https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop 1920w"
+          sizes="(max-width: 767px) 100vw, 1920px"
           alt="Construction site background"
           className="w-full h-full object-cover"
         />
@@ -39,7 +41,7 @@ const Hero: React.FC = () => {
 
           {/* Subheadline */}
           <p className="text-xl md:text-2xl lg:text-3xl font-semibold mb-8">
-            <CounterDisplay endValue={20} suffix="+" /> Years of Perfection | Rain or Shine, We Get It Done
+            <CounterDisplay endValue={20} suffix="+" duration={800} /> Years of Perfection | Rain or Shine, We Get It Done
           </p>
 
           {/* Trust Indicators */}
