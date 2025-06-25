@@ -41,7 +41,7 @@ const Hero: React.FC = () => {
 
           {/* Subheadline */}
           <p className="text-xl md:text-2xl lg:text-3xl font-semibold mb-8">
-            <CounterDisplay endValue={20} suffix="+" duration={800} /> Years of Perfection | Rain or Shine, We Get It Done
+            20+ Years of Perfection | Rain or Shine, We Get It Done
           </p>
 
           {/* Trust Indicators */}
