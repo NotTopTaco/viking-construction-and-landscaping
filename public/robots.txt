@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://viking-construction-and-landscaping.pages.dev/sitemap.xml 
