@@ -38,11 +38,9 @@ const Hero: React.FC = () => {
           </AnimatedSection>
 
           {/* Subheadline */}
-          <AnimatedSection animation="slide-up" delay={500}>
-            <p className="text-xl md:text-2xl lg:text-3xl font-semibold mb-8">
-              <CounterDisplay endValue={20} suffix="+" /> Years of Perfection | Rain or Shine, We Get It Done
-            </p>
-          </AnimatedSection>
+          <p className="text-xl md:text-2xl lg:text-3xl font-semibold mb-8">
+            <CounterDisplay endValue={20} suffix="+" /> Years of Perfection | Rain or Shine, We Get It Done
+          </p>
 
           {/* Trust Indicators */}
           <AnimatedSection animation="fade-in" delay={700}>
